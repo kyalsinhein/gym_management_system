@@ -1,2 +1,2 @@
-# gym_management_system
-During my final year of the BSc in Computing, I led a four-member team to develop a web-based Gym Management System with features for membership, finance, and administration. As Project Leader, I managed timelines, coordinated the team, and contributed to development using HTML, CSS, JavaScript, and Python.
+This was my final-year group project, a web-based platform that helps gym admins manage memberships, payments, and operations, featuring a member portal for easy access. I served as both Team Leader and Developer, managing the project and contributing to core development.
+Tech Stack: HTML, CSS, JavaScript, Python (Flask), MySQL
