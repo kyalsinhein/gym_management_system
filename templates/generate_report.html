@@ -1,0 +1,222 @@
+{% extends "layout.html" %} {% block title %}
+<title>View Reports</title>
+{% endblock %} {% block styles %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<style>
+  .pagination {
+    justify-content: center;
+    padding: 20px 0;
+  }
+
+  .page-item.active .page-link {
+    background-color: #ff6a00;
+    border-color: #ff6a00;
+    color: white;
+  }
+
+  .page-link {
+    color: #ff6a00;
+    font-weight: bold;
+  }
+
+  .page-item.disabled .page-link {
+    color: #ccc;
+    pointer-events: none;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center" style="color: white">Admin Report</h1>
+
+  <!-- Date Filter Form -->
+  <form method="POST" class="mt-4">
+    <div class="row g-3">
+      <div class="col-md-5">
+        <label for="start_date" class="form-label" style="color: white"
+          >Start Date:</label
+        >
+        <input
+          type="date"
+          id="start_date"
+          name="start_date"
+          class="form-control"
+          value="{{ start_date }}"
+          required
+        />
+      </div>
+      <div class="col-md-5">
+        <label for="end_date" class="form-label" style="color: white"
+          >End Date:</label
+        >
+        <input
+          type="date"
+          id="end_date"
+          name="end_date"
+          class="form-control"
+          value="{{ end_date }}"
+          required
+        />
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">
+          Generate Report
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Bookings Report -->
+  {% if bookings %}
+  <h2 class="mt-5" style="color: white">Bookings Report</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped mt-3">
+      <thead class="thead-dark">
+        <tr>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Package Name</th>
+          <th>Booking Date</th>
+          <th>Total Price</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking['bookingid'] }}</td>
+          <td>{{ booking['userid'] }}</td>
+          <td>{{ booking['packagename'] }}</td>
+          <td>{{ booking['booking_date'] }}</td>
+          <td>{{ booking['total_price'] }}</td>
+          <td>{{ booking['status'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- Pagination for Bookings (only shown if more than 5 rows) -->
+  {% if total_pages_bookings > 1 %}
+  <div class="pagination">
+    <div class="page-item {% if page_bookings == 1 %}disabled{% endif %}">
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_bookings=page_bookings-1) }}"
+        >Previous</a
+      >
+    </div>
+    <div
+      class="page-item {% if page_bookings == total_pages_bookings %}disabled{% endif %}"
+    >
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_bookings=page_bookings+1) }}"
+        >Next</a
+      >
+    </div>
+  </div>
+  {% endif %} {% endif %}
+
+  <!-- Users Report -->
+  {% if users %}
+  <h2 class="mt-5" style="color: white">Users Report</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped mt-3">
+      <thead class="thead-dark">
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Registration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user['userid'] }}</td>
+          <td>{{ user['username'] }}</td>
+          <td>{{ user['useremail'] }}</td>
+          <td>{{ user['registration_date'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- Pagination for Users -->
+  {% if total_pages_users > 1 %}
+  <div class="pagination">
+    <div class="page-item {% if page_users == 1 %}disabled{% endif %}">
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_users=page_users-1) }}"
+        >Previous</a
+      >
+    </div>
+    <div
+      class="page-item {% if page_users == total_pages_users %}disabled{% endif %}"
+    >
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_users=page_users+1) }}"
+        >Next</a
+      >
+    </div>
+  </div>
+  {% endif %} {% endif %}
+
+  <!-- Payments Report -->
+  {% if payments %}
+  <h2 class="mt-5" style="color: white">Payments Report</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped mt-3">
+      <thead class="thead-dark">
+        <tr>
+          <th>Payment ID</th>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Payment Method</th>
+          <th>Payment Date</th>
+          <th>Payment Amount</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for payment in payments %}
+        <tr>
+          <td>{{ payment['paymentid'] }}</td>
+          <td>{{ payment['bookingid'] }}</td>
+          <td>{{ payment['userid'] }}</td>
+          <td>{{ payment['payment_method'] }}</td>
+          <td>{{ payment['payment_date'] }}</td>
+          <td>{{ payment['payment_amount'] }}</td>
+          <td>{{ payment['payment_status'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- Pagination for Payments -->
+  {% if total_pages_payments > 1 %}
+  <div class="pagination">
+    <div class="page-item {% if page_payments == 1 %}disabled{% endif %}">
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_payments=page_payments-1) }}"
+        >Previous</a
+      >
+    </div>
+    <div
+      class="page-item {% if page_payments == total_pages_payments %}disabled{% endif %}"
+    >
+      <a
+        class="page-link"
+        href="{{ url_for('generate_report', start_date=start_date, end_date=end_date, page_payments=page_payments+1) }}"
+        >Next</a
+      >
+    </div>
+  </div>
+  {% endif %} {% endif %}
+</div>
+{% endblock %}

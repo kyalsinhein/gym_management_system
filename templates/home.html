@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}Gym Management System{% endblock %}
+{% block content %}
+<link href="/static/css/home.css" rel="stylesheet" />
+
+<div class="division division-1">
+  <div class="content">
+    <h2 class="division-title">Shape Our Body</h2>
+    <div class="division-description">
+      <p class="description-text-1">
+        Be <span class="orange-text">Strong</span>
+      </p>
+      <p class="description-text-2">Train Hard</p>
+    </div>
+    <p>
+      <a href="{{ url_for('about') }}">
+        <button class="getinfobtn">Get Info</button>
+      </a>
+    </p>
+  </div>
+</div>
+
+<div class="division division-2">
+  <p class="division-2-title">Why choose us?</p>
+  <p class="division-2-description">PUSH YOUR LIMITS FORWARD</p>
+  <div class="division-2-content">
+    <div class="content1">
+      <img src="/static/photos/weight.png" alt="weight" />
+      <p>Professional training plan</p>
+    </div>
+    <div class="content2">
+      <img src="/static/photos/heart.png" alt="heart" />
+      <p>Unique to your needs</p>
+    </div>
+    <div class="content3">
+      <img src="/static/photos/plan.png" alt="plan" />
+      <p>Healthy nutrition plan</p>
+    </div>
+  </div>
+</div>
+
+<div class="division division-3">
+  <p class="division-3-title">Our Popular Categories</p>
+  <div class="division-3-content">
+    {% for category in popular_categories %}
+    <div class="category-card">
+      <img
+        src="/static/photos/{{ category['poster'] }}"
+        alt="{{ category['categoryname'] }}"
+      />
+      <div class="category-info">
+        <p class="category-title">{{ category['categoryname'] }}</p>
+        <p class="category-description">{{ category['categorystatus'] }}</p>
+        <button class="viewdetailbtn">
+          <a
+            href="{{ url_for('category_detail', category_id=category['categoryid']) }}"
+            >View Details</a
+          >
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="division division-4">
+  <p class="division-4-title">Register now to get more deals</p>
+  <p class="division-4-content">Where health, beauty and fitness meet.</p>
+  <a href="{{ url_for('selectcategories') }}">
+    <button class="appointmentbtn">APPOINTMENT</button>
+  </a>
+</div>
+
+{% endblock %}

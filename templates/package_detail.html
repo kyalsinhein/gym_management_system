@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block content %}
+<!-- Hero Section -->
+<div
+  style="
+    background-image: url('/static/photos/hero-2.png');
+    background-size: cover;
+    background-position: center;
+    padding: 200px 0;
+    color: white;
+    text-align: center;
+  "
+>
+  <h1>{{ package['packagename'] }}</h1>
+  <p style="color: #ff6a00">Home > Package > {{ package['packagename'] }}</p>
+</div>
+
+<!-- Content Section -->
+<div
+  class="container my-5"
+  style="
+    background-color: darkgray;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  "
+>
+  <div class="row align-items-center">
+    <!-- Image Section -->
+    <div class="col-md-5 text-center">
+      {% if package['photo'] %}
+      <img
+        src="{{ url_for('static', filename='photos/' + package['photo']) }}"
+        alt="{{ package['packagename'] }} Photo"
+        class="img-fluid"
+        style="border-radius: 10px"
+      />
+      {% else %}
+      <p>No image available</p>
+      {% endif %}
+    </div>
+
+    <!-- Text Section -->
+    <div class="col-md-7">
+      <h2>{{ package['packagename'] }}</h2>
+      <h5 class="text-muted">Description</h5>
+      <p>{{ package['description'] }}</p>
+
+      <h5 class="text-muted mt-4">Price</h5>
+      <p><strong>${{ package['price'] }}</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styling to Reduce Space -->
+<style>
+  .container {
+    max-width: 1000px;
+  }
+  h2 {
+    color: white;
+    font-weight: bold;
+  }
+  h5.text-muted {
+    font-weight: bold;
+  }
+  p {
+    color: black;
+  }
+</style>
+{% endblock %}

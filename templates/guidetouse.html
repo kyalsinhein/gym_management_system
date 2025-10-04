@@ -1,0 +1,133 @@
+
+{% extends "base.html" %}
+
+{% block title %}Guide to Use{% endblock %}
+
+{% block content %}
+
+<br><br>
+
+<div class="guide-header">
+    <h1>Guide to Use Trojan GYM Management System</h1>
+    <p>Explore the features and navigate through our website with ease.</p>
+</div>
+
+<div class="content-container">
+    <!-- Home Page Section -->
+    <div class="content-section">
+        <h2>1. Home Page</h2>
+        <p>
+            After logging in, you will be redirected to the home page. Here, you can find a search bar to quickly look up categories, and highlights of our website features. Explore package categories or learn more about our offerings by navigating through the top menu.
+        </p>
+    </div>
+
+    <!-- Package and Categories Section -->
+    <div class="content-section">
+        <h2>2. Packages and Categories</h2>
+        <p>
+            In the <strong>Packages</strong> section, view the various GYM packages we offer. Click "More Details" to learn about specific packages.
+            <br>
+            In the <strong>Categories</strong> section, browse the available workout categories such as Yoga, Cardio, and Zumba. Clicking "More Details" provides comprehensive information about each category.
+        </p>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="content-section">
+        <h2>3. About Us</h2>
+        <p>
+            Learn more about our GYM, mission, and values on the About Us page. Explore the profiles of our experienced trainers, and click "Get Info" to view detailed information about each trainer.
+        </p>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="content-section">
+        <h2>4. Booking</h2>
+        <p>
+            Enroll in your desired categories and packages through the Booking section. Follow these steps:
+            <ol>
+                <li>Select a category of interest.</li>
+                <li>Choose a package (with or without a trainer).</li>
+                <li>If selecting a trainer, pick your preferred trainer.</li>
+                <li>Choose the package type and a time slot.</li>
+                <li>Proceed to the confirmation page, complete payment, and receive an invoice.</li>
+            </ol>
+            Your booking will be saved in your profile for future reference.
+        </p>
+    </div>
+
+    <!-- Profile Management Section -->
+    <div class="content-section">
+        <h2>5. Profile Management</h2>
+        <p>
+            Manage your bookings and personal details in your profile. Features include:
+            <ul>
+                <li>View and download your booking invoices.</li>
+                <li>Cancel bookings (within 12 hours of booking).</li>
+                <li>Update your profile picture and username.</li>
+                <li>Manage your password and set a security key for recovery purposes.</li>
+            </ul>
+            Remember: Your security key is crucial for recovering your password. Contact admin support if needed.
+        </p>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="content-section">
+        <h2>6. Footer Features</h2>
+        <p>
+            At the bottom of the website, you will find the following:
+            <ul>
+                <li><strong>Contact Us:</strong> Reach out to the admin directly for questions or support.</li>
+                <li><strong>Special Events:</strong> Learn about the exciting events happening at our GYM.</li>
+                <li><strong>FAQ:</strong> Find answers to common questions.</li>
+                <li><strong>Social Media:</strong> Stay connected with us through our social media channels.</li>
+            </ul>
+        </p>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #1c1c1c;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    .guide-header {
+        text-align: center;
+        padding: 50px 0;
+        background-color: #1c1c1c;
+    }
+    .guide-header h1 {
+        font-size: 2.5rem;
+        color: #ff7a29;
+    }
+    .content-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .content-section {
+        margin-bottom: 30px;
+    }
+    .content-section h2 {
+        font-size: 1.8rem;
+        color: #ff7a29;
+        margin-bottom: 15px;
+    }
+    .content-section p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #ddd;
+    }
+    .footer {
+        text-align: center;
+        padding: 20px 0;
+        background-color: black;
+        color: white;
+        margin-top: 40px;
+    }
+</style>
+
+{% endblock %}

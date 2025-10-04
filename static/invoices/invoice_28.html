@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .header .company-info h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #0056b3;
+        }
+
+        .header .company-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .header .invoice-details {
+            text-align: right;
+        }
+
+        .header .invoice-details h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #0056b3;
+        }
+
+        .header .invoice-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .details-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .details-section div {
+            width: 48%;
+        }
+
+        .details-section h3 {
+            font-size: 16px;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .details-section p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #333;
+        }
+
+        table td {
+            font-size: 14px;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .summary .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .footer strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="company-info">
+                <h1>Company Name</h1>
+                <p>1234 Main Street<br>City, State, ZIP Code<br>Email: info@company.com<br>Phone: (555) 555-5555</p>
+            </div>
+            <div class="invoice-details">
+                <h2>Invoice</h2>
+                <p><strong>Invoice#:</strong> 12345678<br><strong>Booking Date:</strong> 2024-11-18 07:39:42<br><strong>Booking Status:</strong> confirmed<br><strong>Payment Status:</strong> completed</p>
+            </div>
+        </div>
+
+        <!-- Bill To and Ship To Section -->
+        <div class="details-section">
+            <div>
+                <h3>Bill To:</h3>
+                <p><strong>Username:</strong> hha</p>
+                <p><strong>Category:</strong> Yoga</p>
+                <p><strong>Package:</strong> Without Trainer: Self-Slim Plan</p>
+            </div>
+            <div>
+                <h3>Details:</h3>
+                <p><strong>Package Type:</strong> Diamond</p>
+                <p><strong>Time Slot:</strong> Evening</p>
+                <p><strong>Time Slot Description:</strong> 03:00-06:00</p>
+                <p><strong>Payment Method:</strong> credit card</p>
+                <p><strong>Payment Date:</strong> 2024-11-18 14:09:42.485210</p>
+            </div>
+        </div>
+
+        <!-- Invoice Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Without Trainer: Self-Slim Plan - Diamond</td>
+                    <td>$100</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th>$100</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Make all checks payable to <strong>Company Name</strong></p>
+            <p>Thank you for your business!</p>
+        </div>
+        <div class="back-home">
+            <a href="/" class="confirm-btn">Confirm Booking</a>
+            <a href="/booking" class="cancel-btn">Cancel Booking</a>
+        </div>
+    </div>
+</body>
+</html>

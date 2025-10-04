@@ -1,0 +1,277 @@
+{% extends "layout.html" %} {% block title %}
+<title>Manage Categories</title>
+{% endblock %} {% block styles %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  rel="stylesheet"
+/>
+{% endblock %} {% block content %}
+<div class="container mt-4">
+  <!-- Flash Messages -->
+  <div>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, msg in messages %}
+    <p class="alert alert-{{ category }}">{{ msg }}</p>
+    {% endfor %} {% endif %} {% endwith %}
+  </div>
+
+  <!-- Category Data Section -->
+  <h1 class="mb-4" style="color: white">Manage Categories</h1>
+  <a
+    href="{{ url_for('admindashboard') }}"
+    class="btn btn-primary mt-3 user-action-btn"
+    >Back to Dashboard</a
+  >
+  <a
+    href="{{ url_for('addcategory') }}"
+    class="btn btn-primary mt-3 user-action-btn"
+    >Add Category</a
+  >
+  <br /><br />
+
+  {% if categories %}
+  <div class="table-responsive" style="overflow-x: auto">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Category ID</th>
+          <th>Category Name</th>
+          <th class="status-column">Status</th>
+          <th>Poster</th>
+          <th>Video</th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <td>{{ category['categoryid'] }}</td>
+          <td>{{ category['categoryname'] }}</td>
+          <td class="status-column">{{ category['categorystatus'] }}</td>
+          <td>
+            {% if category['poster'] %}
+            <img
+              src="{{ url_for('static', filename='photos/' + category['poster']) }}"
+              alt="Poster"
+              width="50"
+            />
+            {% else %} No poster {% endif %}
+          </td>
+          <td>
+            {% if category['video'] %}
+            <a
+              href="{{ url_for('static', filename='photos/' + category['video']) }}"
+              target="_blank"
+              class="btn btn-info btn-sm user-action-btn"
+            >
+              <i class="fas fa-video"></i> View Video
+            </a>
+            {% else %} No video {% endif %}
+          </td>
+          <td class="actions-column">
+            <a
+              href="{{ url_for('editcategory', categoryid=category['categoryid']) }}"
+              class="btn btn-primary btn-sm user-action-btn"
+            >
+              <i class="fas fa-edit"></i> Edit
+            </a>
+            <form
+              action="{{ url_for('delete_category', categoryid=category['categoryid']) }}"
+              method="post"
+              style="display: inline"
+            >
+              <button
+                type="submit"
+                class="btn btn-danger btn-sm user-action-btn"
+                onclick="return confirm('Are you sure you want to delete this category?');"
+              >
+                <i
+                  class="fas fa-trash"
+                  style="font-size: 18px; margin-right: 8px"
+                ></i
+                >Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Section -->
+  <div class="pagination mt-4">
+    {% if total_pages > 1 %}
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if current_page > 1 %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="{{ url_for('viewcategories', page=current_page - 1) }}"
+            aria-label="Previous"
+          >
+            <span aria-hidden="true">&laquo; Previous</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >&laquo; Previous</a
+          >
+        </li>
+        {% endif %} {% for page in page_range %}
+        <li class="page-item {% if page == current_page %}active{% endif %}">
+          <a class="page-link" href="{{ url_for('viewcategories', page=page) }}"
+            >{{ page }}</a
+          >
+        </li>
+        {% endfor %} {% if current_page < total_pages %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="{{ url_for('viewcategories', page=current_page + 1) }}"
+            aria-label="Next"
+          >
+            <span aria-hidden="true">Next &raquo;</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+            >Next &raquo;</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+
+  {% else %}
+  <p class="text-white">No categories found.</p>
+  {% endif %}
+</div>
+
+<!-- Inline CSS for Consistent Button Design -->
+<style>
+  /* Static button design for consistency */
+  .user-action-btn {
+    border-radius: 5px;
+    padding: 7px 20px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Ensure icons and buttons are consistent across all screen sizes */
+  .user-action-btn i {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .user-action-btn span {
+    font-size: 14px;
+  }
+
+  /* Button Styles Above the Table */
+  .d-flex .user-action-btn {
+    font-size: 14px;
+    padding: 7px 20px;
+  }
+
+  /* Responsive Styles for Medium and Small Screens */
+  @media (max-width: 768px) {
+    .d-flex .user-action-btn {
+      font-size: 12px !important;
+      padding: 6px 15px !important;
+    }
+
+    .d-flex .user-action-btn i {
+      font-size: 14px !important;
+    }
+
+    .d-flex .user-action-btn span {
+      font-size: 12px !important;
+    }
+
+    .user-action-btn i {
+      font-size: 14px !important;
+    }
+
+    .user-action-btn span {
+      font-size: 12px !important;
+    }
+
+    .user-action-btn {
+      padding: 5px 12px !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .d-flex .user-action-btn {
+      font-size: 10px !important;
+      padding: 4px 10px !important;
+    }
+
+    .d-flex .user-action-btn i {
+      font-size: 12px !important;
+    }
+
+    .d-flex .user-action-btn span {
+      font-size: 10px !important;
+    }
+
+    .user-action-btn i {
+      font-size: 12px !important;
+    }
+
+    .user-action-btn span {
+      font-size: 10px !important;
+    }
+
+    .user-action-btn {
+      padding: 4px 8px !important;
+    }
+  }
+
+  /* Limit the width of the Status column */
+  .status-column {
+    max-width: 150px;
+    white-space: normal; /* Allow text to break */
+    word-wrap: break-word; /* Ensure long text breaks into the next line */
+  }
+
+  /* Reduce the size of the Actions column */
+  .actions-column {
+    max-width: 200px; /* Limit the width of the Actions column */
+    text-align: center;
+  }
+
+  /* Table responsive scrollbar */
+  .table-responsive {
+    overflow-x: auto; /* Ensures horizontal scroll on smaller screens */
+  }
+
+  /* Custom Style for View Video Button */
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+
+  .btn-info i {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+</style>
+
+{% endblock %}

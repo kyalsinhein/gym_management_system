@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Package Type</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #333;
+        color: white;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+      .form-container {
+        background-color: #444;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        width: 90%; /* Flexible for smaller screens */
+        max-width: 500px; /* Limit max width for larger screens */
+      }
+      .form-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+      .form-group .form-control {
+        background-color: #666;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        height: 35px;
+        padding: 5px 10px;
+      }
+      .form-group .form-control:focus {
+        background-color: #777;
+        box-shadow: none;
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: column; /* Default stack for mobile */
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .btn {
+        height: 40px;
+        font-size: 14px;
+        border: none;
+      }
+      .btn-primary {
+        background-color: #555;
+      }
+      .btn-primary:hover {
+        background-color: #666;
+      }
+      .btn-secondary {
+        background-color: #555;
+      }
+      .btn-secondary:hover {
+        background-color: #888;
+      }
+      @media (min-width: 768px) {
+        .btn-container {
+          flex-direction: row; /* Side-by-side buttons on larger screens */
+        }
+        .btn {
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Add New Package Type</h1>
+      <form method="post" action="{{ url_for('addpackage_type') }}">
+        <div class="form-group">
+          <label for="packagetypename" class="form-label"
+            >Package Type Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="packagetypename"
+            name="packagetypename"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="categoryid" class="form-label">Category ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="categoryid"
+            name="categoryid"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="packagesid" class="form-label">Packages ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="packagesid"
+            name="packagesid"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="price"
+            name="price"
+            required
+          />
+        </div>
+        <div class="btn-container">
+          <a
+            href="{{ url_for('viewpackage_types') }}"
+            class="btn btn-secondary"
+          >
+            Back
+          </a>
+          <button type="submit" class="btn btn-primary">
+            Add Package Type
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

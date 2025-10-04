@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<div style="
+    background-image: url('/static/photos/hero-2.png'); 
+    background-size: cover; 
+    background-position: center; 
+    padding: 100px 0; 
+    color: white; 
+    text-align: center;
+    background-color: black; /* Changed background color */
+    position: relative;
+">
+    <div>
+        <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 10px;">Booking</h1>
+        <p style="font-size: 1rem; color: #d36229; margin-bottom: 0;">Home &gt; Booking: Package Type</p>
+    </div>
+</div>
+
+<!-- Package Selection Form -->
+<div class="container mt-4">
+    <h2 class="text-center mb-3" style="color: #d36229; font-size: 1.75rem;">Select Package Type for {{ package['packagename'] }}</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-9">
+            <form method="POST" class="shadow-sm p-3 rounded bg-dark">
+                <div class="form-group mb-2">
+                    <label for="packagetype_id" class="form-label text-light" style="font-size: 0.9rem;">Select Package Type:</label>
+                    <select name="packagetype_id" id="packagetype_id" class="form-select" style="font-size: 0.9rem;">
+                        {% for package_type in package_types %}
+                            <option value="{{ package_type['packagetypeid'] }}" 
+                                    {% if package_type['packagetypeid'] == request.form.get('packagetype_id') %} selected {% endif %}>
+                                {{ package_type['packagetypename'] }} - ${{ package_type['price'] }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-sm" style="font-size: 0.85rem; padding: 8px;">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<!-- Additional Styles for Responsiveness -->
+<style>
+    /* Base Styles */
+    body {
+        background-color: #333; /* Set dark black background for the page */
+        color: white; /* Ensure text is readable on a dark background */
+        font-family: Arial, sans-serif; /* Default font family for better readability */
+        margin: 0;
+        padding: 0;
+    }
+
+    .shadow-sm {
+        padding: 15px; /* Smaller padding for forms */
+        border-radius: 6px; /* Smooth corners */
+        background-color: #1e1e1e; /* Dark form background */
+        color: #fff; /* White text for better contrast */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+    }
+
+
+
+    .form-select {
+        background-color: #444; /* Darker dropdown background */
+        border: 1px solid #555; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        color: #fff; /* White text */
+        padding: 8px; /* Padding for dropdown options */
+        width: 100%; /* Full-width dropdown */
+    }
+
+    .form-select:focus {
+        outline: none;
+        border-color: #ff7a29; /* Accent border color on focus */
+        box-shadow: 0 0 5px #ff7a29; /* Glow effect */
+    }
+
+    .btn-sm {
+        background-color: #ff7a29; /* Orange button color */
+        color: white; /* White text for buttons */
+        border: none;
+        border-radius: 5px; /* Rounded corners for buttons */
+        padding: 10px; /* Default button padding */
+        text-transform: uppercase; /* Capitalize button text */
+        font-weight: bold;
+        cursor: pointer; /* Pointer cursor for buttons */
+        font-size: 0.85rem;
+    }
+
+    .btn-sm:hover {
+        background-color: #e0661a; /* Darker orange on hover */
+        box-shadow: 0 0 10px rgba(255, 122, 41, 0.5); /* Add subtle hover effect */
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem; /* Adjust hero title for medium screens */
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Adjust heading size */
+        }
+
+        .form-select, 
+        .btn-sm {
+            font-size: 0.8rem; /* Smaller font size for compact view */
+        }
+
+        .shadow-sm {
+            padding: 10px; /* Compact padding for small screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.75rem; /* Reduce hero title size further */
+        }
+
+        .form-label {
+            font-size: 0.8rem; /* Smaller label text for mobile devices */
+        }
+
+        .btn-sm {
+            padding: 8px; /* Adjust button padding for small screens */
+            font-size: 0.75rem; /* Smaller button font size */
+        }
+    }
+</style>
+
+{% endblock %}

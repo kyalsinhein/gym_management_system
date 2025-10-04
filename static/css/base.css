@@ -1,0 +1,247 @@
+/* Body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.footer-link {
+  color: black;
+}
+
+/* Navbar Styling */
+.navbar-custom {
+  background-color: transparent !important; /* Transparent background for larger screens */
+  color: #ffffff;
+  box-shadow: none;
+  z-index: 1000; /* Keep navbar above other content */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar brand (logo) styling */
+.navbar-brand {
+  color: #ff4500;
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Navbar links styling */
+.navbar-nav {
+  display: flex;
+  flex: 1;
+  justify-content: space-between; /* Adjust space for mobile-friendly layout */
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-item {
+  padding: 0 15px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #ff4500;
+}
+
+/* Search bar styling */
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.search-form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.search-form .form-control {
+  border-radius: 20px 0 0 20px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+}
+
+.search-button {
+  border-radius: 0 20px 20px 0;
+  border: none;
+  color: #888;
+  background-color: #f8f9fa;
+}
+
+.search-button:hover {
+  color: #ff4500;
+}
+
+/* Style for "Tro" */
+.trojan-white {
+  color: #ffffff;
+}
+
+/* Style for "Jan" */
+.trojan-orange {
+  color: #ff4500;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #d9d9d9;
+  color: black;
+  padding: 40px 0;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+.footer h3,
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer li {
+  font-size: 14px;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer .social-icons a {
+  font-size: 18px;
+  color: black;
+  transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+  color: #ff4500;
+}
+
+.footer .footer-link {
+  text-decoration: none;
+}
+
+/* Footer Hr */
+.footer-hr {
+  border: 1px solid #ccc;
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+  /* No scroll effect on smaller screens */
+  .navbar-custom {
+    background-color: black !important; /* Fixed background color */
+    box-shadow: none !important; /* No shadow */
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-toggler {
+    display: block;
+  }
+
+  /* Adjusting the font size for the "Trojan" text on smaller screens */
+  .navbar-brand {
+    font-size: 1.5rem; /* Smaller font for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-custom {
+    background-color: black !important; /* Fixed background color */
+    box-shadow: none !important; /* No shadow */
+  }
+
+  .search-form {
+    width: 300px;
+  }
+
+  .nav-item {
+    padding: 5px 10px;
+  }
+
+  /* Adjusting the font size for "Trojan" text for small screens */
+  .navbar-brand {
+    font-size: 1.2rem; /* Even smaller font for small screens */
+  }
+}
+
+/* Scroll effect for larger screens */
+@media (min-width: 992px) {
+  .navbar-custom.scrolled {
+    background-color: #000000 !important; /* Change background color on scroll */
+  }
+
+  .navbar-custom.scrolled .nav-link {
+    color: white;
+  }
+
+  .navbar-custom.scrolled .navbar-brand {
+    color: #ff4500; /* Keep brand color visible */
+  }
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.footer h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer .footer-link {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer .footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer i {
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.footer i:hover {
+  color: #007bff;
+}
+
+.footer img {
+  margin-top: 5px;
+}
+
+.footer hr {
+  border-color: #dee2e6;
+}

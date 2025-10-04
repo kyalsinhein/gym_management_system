@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login as Admin</title>
+    <link href="/static/css/login.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background-container">
+      <div class="form-container">
+        <h2 class="form-title">Login</h2>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+          {% for category, message in messages %}
+          <div class="flash-message {{ category }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Login form -->
+        <form method="POST" action="{{ url_for('login') }}" class="login-form">
+          <div class="form-group">
+            <label for="email_or_name" class="form-label">Email</label>
+            <input
+              type="text"
+              class="form-control custom-input"
+              id="email_or_name"
+              name="email_or_name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control custom-input"
+              id="password"
+              name="password"
+              required
+            />
+          </div>
+          <input type="submit" class="btn custom-btn" value="Login" />
+
+          <!-- Forgot Password Link (Appears after 2 failed attempts) -->
+          {% if session['attempt_count'] >= 2 %}
+          <div class="forgot-password-link">
+            <a href="{{ url_for('user_password_recovery') }}">Forgot Password?</a>
+          </div>
+          {% endif %}
+        </form>
+
+        <!-- Divider line under the button -->
+        <hr class="divider" />
+
+        <!-- Additional links for "Login as Admin" and "Register" -->
+        <div class="additional-links">
+          <a href="{{ url_for('admin_login') }}" class="admin-link">Login as Admin</a>
+          <span class="separator">|</span>
+          <a href="{{ url_for('register') }}" class="register-link">Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flash message styling -->
+    <style>
+      .flash-container {
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      .flash-message {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        
+      }
+
+
+    </style>
+  </body>
+</html>

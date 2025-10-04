@@ -1,0 +1,105 @@
+/* Body Background */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #4a4c4e 0%, #37393a 100%) no-repeat center
+    center fixed;
+}
+
+/* Sidebar Styles */
+#sidebar.custom-sidebar {
+  background: black;
+  color: #ffffff;
+  height: 100vh;
+  padding-top: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  z-index: 1000;
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+/* Collapsed Sidebar */
+#sidebar.custom-sidebar.collapsed {
+  transform: translateX(-250px); /* This hides the sidebar when collapsed */
+}
+
+/* Navbar Links */
+#sidebar.custom-sidebar .nav-link {
+  color: #ffffff;
+  font-size: 0.9rem; /* Make text smaller */
+  padding: 0.75rem 1.25rem;
+  transition: background-color 0.3s ease;
+}
+
+#sidebar.custom-sidebar .nav-link:hover {
+  color: rgb(217, 143, 23);
+}
+
+/* Sidebar Toggle Button */
+#sidebarToggle {
+  position: absolute;
+  top: 1rem;
+  right: -3rem;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  color: red;
+  z-index: 1100;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+}
+
+#sidebar.custom-sidebar.collapsed ~ .main-content {
+  margin-left: 0;
+}
+
+/* Media Queries */
+
+/* For Medium Screens (1024px and smaller) */
+@media (max-width: 1024px) {
+  #sidebar.custom-sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
+  /* Hide icons in the sidebar on medium and small screens */
+  #sidebar.custom-sidebar .nav-link i.fas {
+    display: none;
+  }
+}
+
+/* For Small Screens (767px and smaller) */
+@media (max-width: 767px) {
+  #sidebar.custom-sidebar {
+    width: 200px;
+    transform: translateX(-200px); /* Initially hide the sidebar */
+  }
+
+  #sidebar.custom-sidebar.collapsed {
+    transform: translateX(0); /* Show the sidebar when toggled */
+  }
+
+  #sidebarToggle {
+    display: block; /* Show the toggle button */
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  /* Hide icons inside the sidebar on small screens */
+  #sidebar.custom-sidebar .nav-link i.fas {
+    display: none;
+  }
+}

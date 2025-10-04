@@ -1,0 +1,145 @@
+/* Header Section */
+.header-section {
+  background: url("/static/photos/hero-2.png") no-repeat center center/cover;
+  padding: 200px 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.header-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.header-section p {
+  font-size: 1rem;
+  color: #d36229;
+}
+
+/* What We Offer Section */
+.what-we-offer {
+  background-color: #2f2f2f;
+  color: #ffffff;
+  padding: 60px 0;
+}
+
+.what-we-offer h2 {
+  color: #d36229;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.what-we-offer h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.offer-box {
+  background: #3f3f3f;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  color: #dddddd;
+  transition: transform 0.3s ease;
+}
+
+.offer-box:hover {
+  transform: scale(1.05);
+}
+
+.offer-box img {
+  border-radius: 8px;
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.offer-box h5 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #d36229;
+}
+
+/* Our Team Section */
+.our-team {
+  padding: 60px 0;
+  background-color: #1d1d1d;
+  color: #ffffff;
+}
+
+.section-title {
+  color: #d36229;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.our-team h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* Adjusted Team Member Styling for Smaller Cards */
+.team-member {
+  background-color: #444444;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  text-align: center;
+  width: 100%; /* Make sure the card takes the full width of its column */
+  max-width: 300px; /* Max width for consistency */
+  margin: 0 auto; /* Center the card */
+  height: 500px; /* Ensure a fixed height for the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out the elements */
+}
+
+/* Hover effect */
+.team-member:hover {
+  transform: scale(1.05);
+}
+
+/* Adjusted Image Styling (Larger Vertical Image) */
+.team-member img {
+  border-radius: 8px;
+  width: 100%;
+  height: 350px; /* Increased height for a taller vertical image */
+  object-fit: cover; /* Ensures the image covers the container without stretching */
+}
+
+.team-member h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.team-member p {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin-top: 10px;
+}
+
+/* Button Styling */
+.btn-warning {
+  background-color: #d36229;
+  border: none;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 5px 15px;
+  border-radius: 4px;
+}
+
+.btn-warning:hover {
+  background-color: #d36229;
+  color: #ffffff;
+}

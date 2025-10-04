@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Package Type</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #333;
+        color: white;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 20px;
+      }
+      .form-container {
+        background-color: #444;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        max-width: 90%;
+        width: 500px;
+      }
+      .form-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input {
+        width: 100%;
+        background-color: #555;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .form-group input:focus {
+        background-color: #666;
+        outline: none;
+      }
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .btn {
+        padding: 10px;
+        font-size: 14px;
+        background-color: #555;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #777;
+      }
+      @media (min-width: 768px) {
+        .btn-container {
+          flex-direction: row;
+        }
+        .btn {
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Edit Package Type</h1>
+      <form
+        action="{{ url_for('editpackage_types', packagetypeid=packagetype['packagetypeid']) }}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="packagetypename">Package Type Name</label>
+          <input
+            type="text"
+            id="packagetypename"
+            name="packagetypename"
+            value="{{ packagetype['packagetypename'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="categoryid">Category ID</label>
+          <input
+            type="text"
+            id="categoryid"
+            name="categoryid"
+            value="{{ packagetype['categoryid'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="packagesid">Packages ID</label>
+          <input
+            type="text"
+            id="packagesid"
+            name="packagesid"
+            value="{{ packagetype['packagesid'] }}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="text"
+            id="price"
+            name="price"
+            value="{{ packagetype['price'] }}"
+            required
+          />
+        </div>
+        <div class="btn-container">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="history.back()"
+          >
+            Back
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Update Package Type
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

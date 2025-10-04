@@ -1,0 +1,217 @@
+{% extends "base.html" %} {% block content %}
+<section class="section-faq">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-md-8">
+        <div class="header-section">
+          <h2 class="title">Frequently Asked Questions</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="questions">
+          <div class="single-question">
+            <div>
+              <h3>
+                How much weight should I be lifting when I strength train?
+              </h3>
+              <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="answer">
+              When you choose a weight for strength training, pick a weight
+              that’s “heavy for you.” For example, 5 lbs may be heavy for one
+              person, while 50 lbs is heavy for someone else. This will depend
+              on your current strength and fitness level...
+            </p>
+          </div>
+          <div class="single-question">
+            <div>
+              <h3>How To Lose Weight And Tone Up Fast?</h3>
+              <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="answer">
+              When I get this question, friends are often referring to building
+              muscle to get that “toned” and defined look, and possibly losing a
+              bit of body fat so the muscle is revealed...
+            </p>
+          </div>
+          <div class="single-question">
+            <div>
+              <h3>Should I stretch before my workouts?</h3>
+              <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="answer">
+              Research is mixed on this, so if you don’t want to stretch, you
+              can skip it! Static stretching before a workout has actually been
+              shown to DECREASE speed and performance...
+            </p>
+          </div>
+          <div class="single-question">
+            <div>
+              <h3>How often should I rest?</h3>
+              <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="answer">
+              Rest is such a huge piece of the fitness puzzle and it’s easy to
+              forget that the magic happens when we REST. This is when the body
+              is able to restore its levels, rebuild muscle, and gather energy
+              and fuel for the next session...
+            </p>
+          </div>
+          <div class="single-question">
+            <div>
+              <h3>How much cardio should I be doing?</h3>
+              <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="answer">
+              The answer to many of the questions on this list, including this
+              one, is “it depends.” I know. It’s frustrating to hear that
+              answer, but I’ll break down WHY and hopefully this will help you
+              determine the best method for your unique body...
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="question-form">
+          <h3 class="title">Click Button To Ask Question</h3>
+          <form>
+            <button type="submit" class="send-request">
+              <a href="{{ url_for('submitcontactform') }}" style="color: black"
+                >Send Request</a
+              >
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".single-question > div").click(function () {
+      // Close all other questions
+      $(".single-question").not($(this).parent()).removeClass("active");
+      $(".single-question .answer").not($(this).next(".answer")).slideUp();
+      $(".single-question i")
+        .not($(this).find("i"))
+        .removeClass("fa-angle-up")
+        .addClass("fa-angle-down");
+
+      // Toggle the clicked question
+      $(this).parent().toggleClass("active");
+      $(this).next(".answer").slideToggle();
+      $(this).find("i").toggleClass("fa-angle-down fa-angle-up");
+    });
+  });
+</script>
+
+<style>
+  body {
+    background-color: LightGray;
+  }
+  .section-faq {
+    font-family: "Roboto", sans-serif;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section-faq .header-section {
+    margin-bottom: 70px;
+  }
+
+  .section-faq .header-section .title {
+    font-family: "Poppins", sans-serif;
+    font-size: 40px;
+    position: relative;
+    padding-bottom: 35px;
+    margin-bottom: 30px;
+  }
+
+  .section-faq .header-section .title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background-color: #1556a6;
+  }
+
+  .section-faq .questions .single-question {
+    margin-bottom: 20px;
+  }
+
+  .section-faq .questions .single-question > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .section-faq .questions .single-question:hover > div,
+  .section-faq .questions .active > div {
+    border-color: #1556a6;
+    color: #1556a6;
+  }
+
+  .section-faq .questions .single-question h3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 21px;
+  }
+
+  .section-faq .questions .single-question i {
+    font-size: 20px;
+    transition: transform 0.4s;
+  }
+
+  .section-faq .questions .single-question .answer {
+    padding-top: 25px;
+    padding-bottom: 5px;
+    opacity: 0.7;
+    display: none;
+  }
+
+  .section-faq .question-form {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 50px 60px;
+  }
+
+  .section-faq .question-form .title {
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .section-faq .question-form form .send-request {
+    font-family: "Poppins", sans-serif;
+    margin-top: 40px;
+    text-transform: uppercase;
+    background-color: #1556a6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    transition: box-shadow 0.3s;
+  }
+
+  .section-faq .question-form form .send-request:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 991.9px) {
+    .section-faq .questions {
+      margin-bottom: 60px;
+    }
+  }
+</style>
+{% endblock %}

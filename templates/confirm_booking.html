@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .header .company-info h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #0056b3;
+        }
+
+        .header .company-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .header .invoice-details {
+            text-align: right;
+        }
+
+        .header .invoice-details h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #0056b3;
+        }
+
+        .header .invoice-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .details-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .details-section div {
+            width: 48%;
+        }
+
+        .details-section h3 {
+            font-size: 16px;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+
+        .details-section p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #333;
+        }
+
+        table td {
+            font-size: 14px;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .summary .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .footer strong {
+            color: #333;
+        }
+
+        button,
+        select {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #a71d2a;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="company-info">
+                <h1>Trojan</h1>
+                <p>
+                    No.20, Pearl Street,<br>
+                    Golden Valley Ward, Bahan Township,<br>
+                    Yangon, Myanmar<br>
+                    Email: Trojan@gmail.com<br>
+                    Phone: (95)09 797 564 415
+                </p>
+            </div>
+            <div class="invoice-details">
+                <h2>Invoice</h2>
+                <p><strong>Pending</strong></p>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="details-section">
+            <div>
+                <h3>Bill To:</h3>
+                <p><strong>Username:</strong> {{ username }}</p>
+                <p><strong>Category:</strong> {{ category['categoryname'] }}</p>
+                <p><strong>Package:</strong> {{ package['packagename'] }}</p>
+            </div>
+            <div>
+                <h3>Details:</h3>
+                <p><strong>Package Type:</strong> {{ package_type['packagetypename'] }}</p>
+                <p><strong>Trainer:</strong> {{ trainer['trainername'] if trainer else 'No trainer selected' }}</p>
+                <p><strong>Time Slot:</strong> {{ time_slot['name'] }} - {{ time_slot['description'] }}</p>
+            </div>
+        </div>
+
+        <!-- Pricing Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ package['packagename'] }} - {{ package_type['packagetypename'] }}</td>
+                    <td>${{ total_price }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th>${{ total_price }}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Payment Section -->
+        <form method="POST" style="margin-top: 20px;">
+            <label for="payment_method" style="font-size: 16px; color: #333; font-weight: bold;">Select Payment Method:</label>
+            <select id="payment_method" name="payment_method" required>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <div style="display: flex; gap: 20px; margin-top: 20px;">
+                <button type="submit" class="btn-primary">Confirm and Pay</button>
+                <button type="button" class="btn-danger">
+                    <a href="{{ url_for('booking') }}" style="color: white;">Cancel Booking</a>
+                </button>
+            </div>
+        </form>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Make all checks payable to <strong>Trojan</strong></p>
+            <p>Thank you for your business!</p>
+        </div>
+    </div>
+</body>
+
+</html>

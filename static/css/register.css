@@ -1,0 +1,146 @@
+/* General styling */
+body,
+.background-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.background-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Form container */
+.form-container {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center the title */
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Form styling */
+.login-form {
+  width: 100%;
+}
+
+/* Input fields */
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #ddd;
+  align-self: flex-start;
+  margin-left: 5%;
+}
+
+.custom-input {
+  background-color: #333232; /* White background for name, email inputs */
+  border: 1px solid #333232; /* Light border color */
+  border-radius: 25px;
+  color: #333; /* Dark text for readability */
+  padding: 0.5rem 1rem; 
+  width: 90%;
+  text-align: center;
+}
+
+.custom-input:focus {
+  background-color: #f0f0f0; /* Lighter background on focus */
+  color: #333;
+  outline: none;
+  box-shadow: none;
+  border-color: #ff7a29; /* Optional: Add border color on focus */
+}
+
+/* Apply dark background for password field */
+.custom-input[type="password"] {
+  background-color: #333; /* Dark background for password field */
+  color: #ddd; /* Light text for password visibility */
+}
+
+.custom-input[type="password"]:focus {
+  background-color: #444; /* Lighter dark background on focus */
+  color: #fff;
+}
+
+/* Centering the submit button */
+.custom-btn {
+  background-color: #ff7a29;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 40%;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.custom-btn:hover {
+  background-color: #ff5a00;
+}
+
+/* Divider line under the button */
+.divider {
+  border: 0;
+  border-top: 1px solid #555;
+  width: 90%;
+  margin: 1rem 0;
+}
+
+/* Privacy note styling */
+.privacy-note {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.privacy-note a {
+  color: #ff7a29;
+  text-decoration: none;
+}
+
+.privacy-note a:hover {
+  color: #ff5a00;
+}
+
+/* Footer section */
+.form-footer {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.register-link {
+  color: #ff7a29;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  color: #ff5a00;
+}

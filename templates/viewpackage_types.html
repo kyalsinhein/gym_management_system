@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="background-color: black; padding: 30px; text-align: center;">
+    <h3 style="color: white; margin-bottom: 20px;">Package Types</h3>
+    
+    {% if package_types %}
+    <div id="packageTypeCarousel" class="carousel slide" data-bs-ride="carousel" style="width: 80%; margin: 0 auto;">
+        <div class="carousel-inner">
+            {% for package_type in package_types %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <div class="d-flex justify-content-center align-items-center" style="min-height: 450px;">
+                    <div class="package-card">
+                        <h5 style="color: white; margin-top: 15px;">{{ package_type['packagename'] }}</h5>
+                        <p style="color: #b0b0b0; margin-bottom: 10px;">Category ID: {{ package_type['categoryid'] }}</p>
+                        <p style="color: #b0b0b0; margin-bottom: 10px;">Price: ${{ package_type['price'] }}</p>
+                        <a href="#" class="btn btn-secondary">More Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Carousel navigation buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#packageTypeCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#packageTypeCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    {% else %}
+        <p style="color: white;">No package types found.</p>
+    {% endif %}
+</div>
+
+<style>
+/* Centered, clean design for package type card */
+.package-card {
+    background-color: #1c1e24;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Center carousel in the viewport */
+.carousel-inner {
+    display: flex;
+    justify-content: center;
+}
+</style>
+{% endblock %}

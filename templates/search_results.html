@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div
+    style="background-image: url('/static/photos/hero-2.png'); background-size: cover; background-position: center; padding: 200px 0; color: white; text-align: center;">
+    <h1 class="text-center mb-4" style="color: #d36229;">Search Results for: "{{ search_term }}"</h1>
+</div>
+<div class="container mt-4">
+
+
+    {% if rows %}
+    <ul class="list-group">
+        {% for row in rows %}
+        <li class="list-group-item mb-3 shadow-sm p-4">
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                {% if row[4] %}
+                <img src="{{ url_for('static', filename='photos/' ~ row[4]) }}" alt="{{ row[1] }}"
+                    class="img-thumbnail me-md-3 mb-3 mb-md-0" style="max-width: 150px; max-height: 150px;">
+                {% endif %}
+                <div>
+                    <h4 class="fw-bold text-secondary">Category: {{ row[0] }}</h4>
+                    <p class="mb-1"><strong>Package:</strong> {{ row[1] }}</p>
+                    <p class="mb-1"><strong>Description:</strong> {{ row[2] }}</p>
+                    <p class="text-success"><strong>Price:</strong> ${{ row[3] }}</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-warning text-center mt-4">
+        <p>No results found. Try searching for something else!</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Trainer Profile</title>
+    <style>
+      a {
+        text-decoration: none;
+      }
+
+      /* Page layout */
+      body {
+        background-color: #3f3f3f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden; /* Prevent body scroll when form overflows */
+      }
+
+      /* Form container */
+      .trainer-form {
+        display: flex;
+        flex-direction: column;
+        background-color: #4a4a4a;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 90%;
+        max-width: 750px;
+        color: #ffffff;
+        overflow-y: auto; /* Allow scrolling inside the form on small screens */
+        max-height: 90vh; /* Prevent form from exceeding the viewport height */
+      }
+
+      /* Title */
+      h1 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+
+      /* Form section (photo + content together) */
+      .form-content {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      /* Photo section */
+      .photo-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
+      }
+
+      .photo-section img {
+        width: 200px;
+        height: 250px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 1px solid #fff;
+      }
+
+      .file-upload label {
+        font-size: 14px;
+        color: #ccc;
+        margin-bottom: 5px;
+      }
+
+      .file-upload input {
+        font-size: 14px;
+        padding: 5px;
+        color: #333;
+      }
+
+      /* Content section */
+      .content-section {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .form-group {
+        display: flex;
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        flex: 1;
+        text-align: right;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        flex: 2;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #666;
+        border-radius: 5px;
+        background-color: #666666;
+        color: #ffffff;
+      }
+
+      .form-group textarea {
+        resize: none;
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px; /* Add spacing for better visibility */
+      }
+
+      .update-btn,
+      .back-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: calc(50% - 5px); /* Equal widths for both buttons with gap */
+        text-align: center;
+      }
+
+      .update-btn {
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      .update-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .back-btn {
+        background-color: #888;
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        background-color: #aaa;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .form-content {
+          flex-direction: column;
+        }
+
+        .form-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .form-group label {
+          text-align: left;
+          margin-bottom: 5px;
+        }
+
+        .button-group {
+          flex-direction: row;
+          justify-content: center;
+        }
+
+        .update-btn,
+        .back-btn {
+          width: 48%; /* Equal width for smaller screens */
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 18px;
+        }
+
+        .photo-section img {
+          width: 150px;
+          height: 200px;
+        }
+
+        .button-group {
+          gap: 5px; /* Smaller gap for smaller screens */
+        }
+
+        .update-btn,
+        .back-btn {
+          width: 100%; /* Full-width buttons on extra small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form
+      action="{{ url_for('edittrainers', trainerid=trainer['trainerid']) }}"
+      method="POST"
+      enctype="multipart/form-data"
+      class="trainer-form"
+    >
+      <!-- Title -->
+      <h1>Update Trainer Profile</h1>
+
+      <!-- Photo and Form Content -->
+      <div class="form-content">
+        <!-- Photo Section -->
+        <div class="photo-section">
+          {% if trainer['photo'] %}
+          <img
+            src="{{ url_for('static', filename='photos/' + trainer['photo']) }}"
+            alt="Trainer Photo"
+          />
+          {% else %}
+          <img src="placeholder.jpg" alt="Trainer Photo" />
+          {% endif %}
+          <div class="file-upload">
+            <label for="photo">Photo:</label>
+            <input type="file" id="photo" name="photo" />
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+          <div class="form-group">
+            <label for="trainername">Trainer Name:</label>
+            <input
+              type="text"
+              id="trainername"
+              name="trainername"
+              value="{{ trainer['trainername'] }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input
+              type="text"
+              id="age"
+              name="age"
+              value="{{ trainer['age'] }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Weight:</label>
+            <input
+              type="text"
+              id="weight"
+              name="weight"
+              value="{{ trainer['weight'] }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="height">Height:</label>
+            <input
+              type="text"
+              id="height"
+              name="height"
+              value="{{ trainer['height'] }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="occupation">Occupation:</label>
+            <input
+              type="text"
+              id="occupation"
+              name="occupation"
+              value="{{ trainer['occupation'] }}"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required>
+{{ trainer['description'] }}</textarea
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-group">
+        <a href="{{ url_for('viewtrainers') }}" class="back-btn">Back</a>
+        <button type="submit" class="update-btn">Update Trainer</button>
+      </div>
+    </form>
+  </body>
+</html>

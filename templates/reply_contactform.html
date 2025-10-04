@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for (category, msg) in messages %}
+                    <p class="alert alert-{{ category }}">{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <h1>Reply to Contact Form</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="reply_message">Reply Message</label>
+            <textarea id="reply_message" name="reply_message" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Send Reply</button>
+        <a href="{{ url_for('viewcontactform') }}" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Trainer Profile - Gym Management System{% endblock %}
+
+{% block content %}
+<link href="/static/css/trainer_profile.css" rel="stylesheet" />
+<!-- Trainer Profile Section -->
+<section class="trainer-profile">
+    <div class="container">
+        <div class="profile-content d-flex align-items-center">
+            <!-- Profile Image -->
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='photos/' ~ trainer[5]) }}" alt="{{ trainer[0] }}" class="img-fluid">
+            </div>
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <h2 class="trainer-name">{{ trainer[0] }}</h2>
+                <p class="trainer-title">{{ trainer[4] }}</p>
+                
+                <!-- Trainer Info Table -->
+                <table class="trainer-info">
+                    <tr>
+                        <td>Age</td>
+                        <td>{{ trainer[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>{{ trainer[2] }} lbs</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>{{ trainer[3] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Occupation</td>
+                        <td>{{ trainer[4] }}</td>
+                    </tr>
+                </table>
+
+                <p class="trainer-description">{{ trainer[6] }}</p>
+
+                <!-- Social Media Links -->
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

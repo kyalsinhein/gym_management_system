@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    /* Packages Section */
+    .packages-section {
+      padding: 60px 0;
+      background-color: #1d1d1d;
+      color: #ffffff;
+    }
+
+    .section-title {
+      color: #d36229;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .packages-section h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .package-card {
+      background-color: #444444;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      text-align: center;
+      max-width: 300px;
+      margin: 0 auto;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .package-card:hover {
+      transform: scale(1.05);
+    }
+
+    .package-card img {
+      border-radius: 8px;
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .package-card h5 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+
+    .package-card p {
+      font-size: 0.9rem;
+      color: #cccccc;
+      margin-top: 10px;
+    }
+
+    .btn-primary {
+      background-color: #d36229;
+      border: none;
+      color: black;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 5px 15px;
+      border-radius: 4px;
+    }
+
+    .btn-primary:hover {
+      background-color: #d36229;
+      color: #ffffff;
+    }
+</style>
+
+<div style="background-image: url('/static/photos/hero-2.png'); background-size: cover; background-position: center; padding: 200px 0; color: white; text-align: center;">
+  <h1 style="font-size: 3rem; color: white; font-weight: bold;">Booking</h1>
+  <p style="color: #d36229; font-size: 1.2rem;">Home &gt; Booking: Package</p>
+</div>
+
+<section class="packages-section py-5">
+    <div class="container">
+        <h2 class="section-title text-center text-warning">Packages for {{ category['categoryname'] }}</h2>
+        <h3 class="text-center mb-4">Choose Your Desired Package</h3>
+
+        <div class="row">
+            {% for package in packages %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="package-card">
+                    {% if package['photo'] %}
+                    <img src="{{ url_for('static', filename='photos/' + package['photo']) }}" alt="{{ package['packagename'] }}">
+                    {% endif %}
+                    <h5>{{ package['packagename'] }}</h5>
+                    <p><strong>Price:</strong> ${{ package['price'] }}</p>
+                    <form method="POST">
+                        <input type="hidden" name="package_id" value="{{ package['packagesid'] }}">
+                        
+                        {% if package['packagename'] in ["One-on-One: Shed & Shred Program", "Small Group: Lean Team Sessions"] %}
+                        <button type="submit" formaction="{{ url_for('select_trainer', category_id=category['categoryid'], packages_id=package['packagesid']) }}" class="btn btn-primary">
+                            Choose Trainer
+                        </button>
+                        {% else %}
+                        <button type="submit" formaction="{{ url_for('selectpackage_types', category_id=category['categoryid'], packages_id=package['packagesid']) }}" class="btn btn-primary">
+                            Select Package
+                        </button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

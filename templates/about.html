@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block title %}About Us - Gym Management System{%
+endblock %} {% block content %}
+<!-- Link to the About Us specific CSS -->
+<link href="/static/css/about.css" rel="stylesheet" />
+
+<!-- Header Section -->
+<section class="header-section text-center text-light">
+  <div class="container">
+    <h1>About Us</h1>
+    <p>Home &gt; About Us</p>
+  </div>
+</section>
+
+<!-- What We Offer Section -->
+<section class="what-we-offer text-center py-5">
+  <div class="container">
+    <h2 class="section-title">What we do?</h2>
+    <h3 class="mb-4">PUSH YOUR LIMITS FORWARD</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="offer-box">
+          <img
+            src="/static/photos/class-4.jpg"
+            alt="Strength Training"
+            class="img-fluid"
+          />
+          <h5 class="mt-3">Strength Training</h5>
+          <p>
+            Strength training fans will appreciate our system's progress
+            tracking. It logs sets, reps, and offers personalized workout plans,
+            ensuring each member's endurance or strength training journey is
+            recorded accurately and effectively over time.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="offer-box">
+          <img
+            src="/static/photos/services-3.jpg"
+            alt="Personal Training"
+            class="img-fluid"
+          />
+          <h5 class="mt-3">Personal Training</h5>
+          <p>
+            Our system helps personal trainers manage their clients
+            effortlessly. With features like progress tracking, appointment
+            scheduling, and personalized fitness plans, trainers can focus on
+            what they do best—helping clients achieve their fitness goals.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="offer-box">
+          <img
+            src="/static/photos/blog-3.jpg"
+            alt="Group Classes"
+            class="img-fluid"
+          />
+          <h5 class="mt-3">Group Fitness Classes</h5>
+          <p>
+            For those who prefer the energy of group fitness, our gym management
+            system makes booking and managing classes a breeze. Members can
+            easily book classes and set reminders to keep everyone on track.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="our-team py-5 bg-dark text-light">
+  <div class="container">
+    <h2 class="section-title text-center text-warning">Our Team</h2>
+    <h3 class="text-center mb-4">TRAIN WITH EXPERTS</h3>
+    <div class="row">
+      {% for trainer in trainers %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="team-member text-center">
+          <img
+            src="{{ url_for('static', filename='photos/' ~ trainer[2]) }}"
+            alt="{{ trainer[0] }}"
+            class="team-photo"
+          />
+          <h5 class="mt-3">{{ trainer[0] }}</h5>
+          <p>{{ trainer[1] }}</p>
+          <!-- Ensure the link points to the correct trainer profile URL -->
+          <a
+            href="{{ url_for('trainer_profile', trainer_id=trainer[3]) }}"
+            class="btn btn-warning btn-sm"
+            >Get Info</a
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

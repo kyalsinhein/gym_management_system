@@ -1,0 +1,106 @@
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    background-image: url('/static/photos/hero-2.png');
+    background-size: cover;
+    background-position: center;
+    padding: 200px 0;
+    color: white;
+    text-align: center;
+  "
+>
+  <h1 style="font-weight: bold">Packages</h1>
+  <p>Home > Package</p>
+</div>
+
+<div style="background-color: #333; padding: 10px 0; text-align: center">
+  <!-- Reduced padding here -->
+  <h1 style="color: white; margin-bottom: 5px; padding-top: 50px">
+    Packages We Offer
+  </h1>
+  <!-- Reduced margin-bottom here -->
+
+  {% if packages %}
+  <div
+    id="packageCarousel"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    style="width: 80%; max-width: 800px; margin: 0 auto"
+  >
+    <div class="carousel-inner">
+      {% for package in packages %}
+      <div class="carousel-item {% if loop.first %}active{% endif %}">
+        <div class="position-relative" style="min-height: 300px">
+          {% if package['photo'] %}
+          <img
+            src="{{ url_for('static', filename='photos/' + package['photo']) }}"
+            alt="{{ package['packagename'] }} Photo"
+            class="img-fluid w-100"
+            style="
+              height: 500px;
+              object-fit: contain;
+              filter: brightness(70%);
+              padding: 90px;
+            "
+          />
+          {% endif %}
+          <div
+            class="position-absolute top-50 start-50 translate-middle text-center"
+            style="color: white"
+          >
+            <h5 class="fs-2 package-title">{{ package['packagename'] }}</h5>
+            <a
+              href="{{ url_for('package_detail', package_id=package['packagesid']) }}"
+              class="btn btn-warning btn-sm mt-2"
+              >More Detail</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Carousel navigation buttons -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#packageCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#packageCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  {% else %}
+  <p style="color: white">No packages found.</p>
+  {% endif %}
+</div>
+
+<style>
+  /* Package Title Styling */
+  .package-title {
+    color: white;
+  }
+
+  p {
+    color: #ff6a00;
+  }
+  /* Button Styling */
+  .btn-warning {
+    background-color: #ff6a00;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+</style>
+{% endblock %}

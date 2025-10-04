@@ -1,0 +1,57 @@
+.trainer-profile {
+    background-color: #333;
+    color: #fff;
+    padding: 60px 0;
+}
+
+.profile-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.profile-image img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.profile-details {
+    max-width: 500px;
+}
+
+.trainer-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.trainer-title {
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+.trainer-bio, .trainer-description {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.trainer-info {
+    margin: 20px 0;
+    width: 100%;
+    color: #fff;
+}
+
+.trainer-info td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #555;
+}
+
+.social-links a {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffc107;
+}

@@ -1,0 +1,125 @@
+/* General styling */
+body,
+.background-container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.background-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Form container */
+.form-container {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center the title */
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Form styling */
+.login-form {
+  width: 100%;
+}
+
+/* Input fields */
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #ddd;
+  align-self: flex-start;
+  margin-left: 5%;
+}
+
+.custom-input {
+  background-color: #333;
+  border: none;
+  border-radius: 25px;
+  color: #ddd;
+  padding: 0.5rem 1rem;
+  width: 90%;
+  text-align: center;
+}
+
+.custom-input:focus {
+  background-color: #444;
+  color: #fff;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Centering the submit button */
+.custom-btn {
+  background-color: #ff7a29;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 40%;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.custom-btn:hover {
+  background-color: #ff5a00;
+}
+
+/* Divider line under the button */
+.divider {
+  border: 0;
+  border-top: 1px solid #555;
+  width: 90%;
+  margin: 1rem 0;
+}
+
+/* Additional links section */
+.additional-links {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.admin-link,
+.register-link {
+  color: #ff7a29;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.separator {
+  color: #ddd;
+}
+
+.admin-link:hover,
+.register-link:hover {
+  color: #ff5a00;
+}

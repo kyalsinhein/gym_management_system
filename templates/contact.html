@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+<div style=" background-image: url('/static/photos/hero-2.png'); background-size: cover; background-position: center; padding: 200px 0; color: white;
+    text-align: center;">
+  <h1>Contact Us</h1>
+  <p>Home > Contact Us</p>
+</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Office Locations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .contact-section h2, .office-locations h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #e0e0e0;
+    }
+
+    .contact-section p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #b0b0b0;
+    }
+
+    .contact-button {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 1px solid #fff;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .contact-button:hover {
+      background-color: #444;
+    }
+
+    .office-locations {
+      margin-top: 50px;
+    }
+
+    .locations {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .location {
+      max-width: 300px;
+      margin: 10px;
+    }
+
+    .location h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #e0e0e0;
+    }
+
+    .location p {
+      font-size: 1em;
+      color: #b0b0b0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="contact-section">
+      <h2>Contact Us</h2>
+      <p>For inquiries and feedback, click Contact Us below.</p>
+      <a href="{{ url_for('submitcontactform') }}" class="contact-button">CONTACT US ➔</a>
+      <!-- Redirect Button -->
+    </div>
+
+    <div class="office-locations">
+      <h2>Office Locations</h2>
+      <div class="locations">
+        <div class="location">
+          <h3>Trojan @ Golden Valley</h3>
+          <p>No.20, Pearl Street,<br> Golden Valley Ward, Bahan Township,<br>Yangon, Myanmar</p>
+          <p> (95)09 797 564 415</p>
+          <p>Operating hours:<br>MON – FRI 6:00am to 10:00pm<br>WEEKENDS & PUBLIC HOLIDAY 6:00am to 10:00pm</p>
+        </div>
+
+
+        <div class="location">
+          <h3>Trojan @ Mindhama</h3>
+          <p>No.68, Taw Win Rd,<br> 9 Mile, Mayangone Township,<br>Yangon, Myanmar</p>
+          <p> (95)09 779 943 077</p>
+          <p>Operating hours:<br>MON – FRI 6:00am to 10:00pm<br>WEEKENDS & PUBLIC HOLIDAY 6:00am to 10:00pm</p>
+      </div>
+
+      <div class="location">
+        <h3>Trojan @ Novotel Yangon</h3>
+        <p> No.459, Novotel Yangon Max,<br> 459 Pyay Road, Kamayut Township,<br>Yangon, Myanmar</p>
+        <p> (95)09 401 514 160</p>
+        <p>Operating hours:<br>MON – FRI 6:00am to 10:00pm<br>WEEKENDS & PUBLIC HOLIDAY 6:00am to 10:00pm</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div style="background-image: url('/static/photos/hero-2.png'); background-size: cover; background-position: center; padding: 200px 0; color: white; text-align: center;">
+    <h1 style="font-size: 3rem; color: white; font-weight: bold;">Profile</h1>
+    <p style="color: #d36229; font-size: 1.2rem;">Home &gt; Profile</p>
+</div>
+<br><br><br><br>
+
+<!-- User Profile Section -->
+<div class="container py-4" style="max-width: 1100px; margin-top: -80px; background-color: #222; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div class="row">
+        <!-- Profile Photo and Info -->
+        <div class="col-md-4 text-center">
+            {% if user[2] %}
+            <img src="{{ url_for('static', filename='photos/' + user[2]) }}" alt="Profile Photo"
+                 style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);">
+            {% else %}
+            <p>No profile photo uploaded.</p>
+            {% endif %}
+            <h4 class="mt-3" style="font-weight: bold; color: white;"> {{ user[0] }}</h4>
+            <p style="color: lightgray;"> {{ user[1] }}</p>
+        </div>
+
+        <!-- Profile Management -->
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card p-3 mb-3" style="background-color: #333; color: white;">
+                        <h5 style="border-bottom: 1px solid #555; padding-bottom: 10px;">Profile Management</h5>
+                        <form method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+                            <input type="file" name="userprofile_photo" id="userprofile_photo" accept="image/*" required>
+                            <button type="submit" style="margin-top: 15px; padding: 10px 20px; background-color: #d36229; color: black; border: none; border-radius: 4px; font-size: 1em;">Update Photo</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 mb-3" style="background-color: #333; color: white;">
+                        <h5 style="border-bottom: 1px solid #555; padding-bottom: 10px;">Password Management</h5>
+                        <button class="btn w-100 mt-2" style="background-color: #d36229; color: black; border: none;">
+                            <a href="{{ url_for('change_password') }}" style="color: black; text-decoration: none;">Change Password</a>
+                        </button>
+                        <button class="btn w-100 mt-2" style="background-color: #d36229; color: black; border: none;">
+                            <a href="{{ url_for('user_password_recovery') }}" style="color: black; text-decoration: none;">Forgot Password</a>
+                        </button>
+                        <button class="btn w-100 mt-2" style="background-color: #d36229; color: black; border: none;">
+                            <a href="{{ url_for('set_security_key') }}" style="color: black; text-decoration: none;">Set Security Key</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card p-3" style="background-color: #333; color: white;">
+                <h5>Your Bookings</h5>
+                {% if bookings %}
+                <table class="table table-bordered mt-3 text-center">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Total Price</th>
+                            <th>Invoice</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking['bookingid'] }}</td>
+                            <td>${{ booking['total_price'] }}</td>
+                            <td><a href="{{ url_for('invoice', booking_id=booking['bookingid']) }}" style="color: red; text-decoration: none;">View Invoice</a></td>
+                            <td>
+                                <form action="{{ url_for('userdeletebookings', bookingid=booking['bookingid']) }}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-sm" style="background-color: #d36229; color: black; border: none;" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center text-muted mt-3">No bookings found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Replies Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card p-3" style="background-color: #333; color: white;">
+                <h5>Contact Form Replies</h5>
+                {% if replies %}
+                <table class="table table-bordered mt-3 text-center">
+                    <thead>
+                        <tr>
+                            <th>Your Subject</th>
+                            <th>Admin Reply</th>
+                            <th>Admin Reply Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reply in replies %}
+                        <tr>
+                            <td>{{ reply['subject'] }}</td>
+                            <td>{{ reply['reply_message'] }}</td>
+                            <td>{{ reply['reply_date'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center text-muted mt-3">No replies yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div> <br><br>
+{% endblock %}

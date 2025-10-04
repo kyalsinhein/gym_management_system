@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    /* Our Team Section */
+    .our-team {
+        padding: 60px 0;
+        background-color: #1d1d1d;
+        color: #ffffff;
+    }
+
+    .section-title {
+        color: #d36229;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .our-team h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .team-member {
+        background-color: #444444;
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+        text-align: center;
+        max-width: 300px;
+        margin: 0 auto;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .team-member:hover {
+        transform: scale(1.05);
+    }
+
+    .team-member img {
+        border-radius: 8px;
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .team-member h5 {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        margin-top: 10px;
+    }
+
+    .team-member p {
+        font-size: 0.9rem;
+        color: #cccccc;
+        margin-top: 10px;
+    }
+
+    .btn-warning {
+        background-color: #d36229;
+        border: none;
+        color: black;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 10px;
+        padding: 5px 15px;
+        border-radius: 4px;
+    }
+
+    .btn-warning:hover {
+        background-color: #d36229;
+        color: #ffffff;
+    }
+</style>
+
+<div style="background-image: url('/static/photos/hero-2.png'); background-size: cover; background-position: center; padding: 200px 0; color: white; text-align: center;">
+    <h1 style="font-size: 3rem; color: white; font-weight: bold;">Booking</h1>
+    <p style="color: #d36229; font-size: 1.2rem;">Home &gt; Booking: Trainer</p>
+</div>
+
+<section class="our-team py-5">
+    <div class="container">
+        <h2 class="section-title text-center text-warning">Select Trainer for the Package</h2>
+        <h3 class="text-center mb-4">Choose from our experts</h3>
+
+        <div class="row">
+            {% if trainers %}
+                {% for trainer in trainers %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-member">
+                            <img src="{{ url_for('static', filename='photos/' ~ trainer['photo']) }}" alt="{{ trainer['trainername'] }}" />
+                            <h5>{{ trainer['trainername'] }}</h5>
+                            <p>{{ trainer['occupation'] }}</p>
+                            <form method="POST">
+                                <input type="hidden" name="trainer_id" value="{{ trainer['trainerid'] }}">
+                                <button type="submit" class="btn btn-warning">Select</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center text-warning">No trainers available for this category.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

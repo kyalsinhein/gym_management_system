@@ -1,0 +1,214 @@
+
+
+{% extends "layout.html" %}
+{% block title %}Admin Profile{% endblock %}
+{% block content %}
+<div class="profile-container">
+  <h1 class="profile-title">Admin Profile</h1>
+
+  <!-- Display Profile Photo -->
+  <div class="profile-photo">
+    {% if admin[2] %}
+    <img
+      src="{{ url_for('static', filename='photos/' + admin[2]) }}"
+      alt="Profile Photo"
+    />
+    {% else %}
+    <p class="no-photo">No profile photo uploaded.</p>
+    {% endif %}
+  </div>
+
+  <!-- Admin Name and Email -->
+  <div class="admin-info">
+    <h2>{{ admin[0] }}</h2>
+    <p>Email: {{ admin[1] }}</p>
+  </div>
+
+  <!-- Profile Photo Upload Form -->
+  <form method="POST" enctype="multipart/form-data" class="photo-upload-form">
+    <input
+      type="file"
+      name="adminprofile_photo"
+      id="adminprofile_photo"
+      accept="image/*"
+      class="file-input"
+    />
+    <button type="submit" class="upload-button">Update Photo</button>
+  </form>
+
+  <!-- Links for Change and Recover Password -->
+  <div class="action-links">
+    <a href="{{ url_for('admin_change_password') }}" class="change-password">Change Password</a>
+    <a href="{{ url_for('admin_password_recovery') }}" class="recover-password">Recover Password</a>
+    <a href="{{ url_for('set_admin_security_key') }}" class="set-security-key">Set Security Key</a>
+  </div>
+</div>
+
+<style>
+  /* General Container */
+  .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+  }
+
+  .profile-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  /* Profile Photo Section */
+  .profile-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+
+  .no-photo {
+    font-size: 1em;
+    color: #bbb;
+    margin-bottom: 20px;
+  }
+
+  /* Admin Info Section */
+  .admin-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  .admin-info p {
+    font-size: 1.2em;
+    color: #ccc;
+  }
+
+  /* Photo Upload Form */
+  .photo-upload-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .file-input {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1em;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+  }
+
+  .upload-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .upload-button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Action Links */
+  .action-links {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .action-links a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+
+  .change-password {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .change-password:hover {
+    background-color: #007bff;
+  }
+
+  .recover-password {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .recover-password:hover {
+    background-color: #007bff;
+  }
+
+  .set-security-key {
+    background-color: #007bff;
+    color:#fff  ;
+    border: 1px solid #007bff;
+  }
+
+  .set-security-key:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-title {
+      font-size: 1.8em;
+    }
+
+    .admin-info h2 {
+      font-size: 1.3em;
+    }
+
+    .admin-info p {
+      font-size: 1em;
+    }
+
+    .file-input {
+      max-width: 100%;
+    }
+
+    .action-links a {
+      font-size: 0.9em;
+      padding: 8px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .profile-title {
+      font-size: 1.5em;
+    }
+
+    .admin-info h2 {
+      font-size: 1.2em;
+    }
+
+    .action-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
+{% endblock %}
+

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Hero Section -->
+<div
+  style="
+    background-image: url('/static/photos/hero-2.png');
+    background-size: cover;
+    background-position: center;
+    padding: 200px 0;
+    color: white;
+    text-align: center;
+  "
+>
+  <h1>{{ category['categoryname'] }}</h1>
+  <p style="color: #ff6a00">Home > Category > {{ category['categoryname'] }}</p>
+</div>
+
+<!-- Content Section -->
+<div
+  class="container my-5"
+  style="
+    background-color: darkgray;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  "
+>
+  <div class="row align-items-center">
+    <!-- Image Section -->
+    <div class="col-md-5 text-center">
+      {% if category['poster'] %}
+      <img
+        src="{{ url_for('static', filename='photos/' + category['poster']) }}"
+        alt="{{ category['categoryname'] }} Poster"
+        class="img-fluid"
+        style="border-radius: 10px"
+      />
+      {% else %}
+      <p>No image available</p>
+      {% endif %}
+    </div>
+
+    <!-- Text Section -->
+    <div class="col-md-7">
+      <h2>{{ category['categoryname'] }}</h2>
+      <p>{{ category['categorystatus'] }}</p>      
+      <!-- Video Button Section -->
+      {% if category['video'] %}
+      <button
+        class="btn btn-warning mt-3"
+        data-bs-toggle="modal"
+        data-bs-target="#videoModal"
+      >
+        Watch Video
+      </button>
+      {% else %}
+      <p>No video available</p>
+      {% endif %}
+      
+      <!-- More Details Button -->
+     </div>
+  </div>
+</div>
+<!-- Video Modal -->
+<div
+  class="modal fade"
+  id="videoModal"
+  tabindex="-1"
+  aria-labelledby="videoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">
+          {{ category['categoryname'] }} Video
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <video
+          controls
+          style="width: 100%; border-radius: 10px"
+        >
+          <source
+            src="{{ url_for('static', filename='photos/' + category['video']) }}"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- More Details Modal -->
+<div
+  class="modal fade"
+  id="detailsModal"
+  tabindex="-1"
+  aria-labelledby="detailsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel">
+          More Details About {{ category['categoryname'] }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h5>Additional Information</h5>
+        <p>{{ category['details'] }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styling to Reduce Space -->
+<style>
+  .container {
+    max-width: 1000px;
+  }
+  h2 {
+    color: white;
+    font-weight: bold;
+  }
+  h5.text-muted {
+    font-weight: bold;
+    color: orange;
+  }
+  p {
+    color: black;
+  }
+</style>
+{% endblock %}
