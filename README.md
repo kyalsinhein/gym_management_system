@@ -8,7 +8,7 @@ As part of my final-year group project, we developed a **Gym Management System**
 
 Please start the system by running 'app.py'.
 
-**Default Admin Account** 
+## Default Admin Account
 
 **Gmail:** admin@gmail.com 
 
