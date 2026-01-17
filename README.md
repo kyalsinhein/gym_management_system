@@ -28,4 +28,4 @@ Please start the system by running 'app.py'.
 - CSS  
 - JavaScript  
 - Python (Flask)  
-- MySQL
+- SQLite
