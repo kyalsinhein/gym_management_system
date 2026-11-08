@@ -6,8 +6,10 @@ As part of my final-year group project, we developed a **Gym Management System**
 
 ## Getting Started
 
+```bash
 python -m pip install flask pytz
 python app.py 'app.py'.
+```
 
 ## Default Admin Account
 
