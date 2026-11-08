@@ -1,6 +1,6 @@
 # Gym Management System
 
-As part of my final-year group project, we developed a **Gym Management System** — a web-based platform that helps gym administrators manage memberships, payments, and operations efficiently. It also includes a member portal for convenient access to personal information and updates.
+As part of my final-year group project, we developed a **Gym Management System**, a web-based platform that helps gym administrators manage memberships, payments, and operations efficiently. It also includes a member portal for convenient access to personal information and updates.
 
 ---
 
